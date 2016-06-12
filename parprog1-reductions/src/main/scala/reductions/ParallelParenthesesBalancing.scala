@@ -41,7 +41,34 @@ object ParallelParenthesesBalancing {
   /** Returns `true` iff the parentheses in the input `chars` are balanced.
    */
   def balance(chars: Array[Char]): Boolean = {
-    ???
+    if (chars.isEmpty) true
+    
+    else if (chars.size == 1) {
+//      val str = new String(chars)
+//      (str != "("  && str != ")")
+      val ch = chars(0)
+      ch != '(' && ch != ')'
+    }
+    
+//    else if (chars.size == 2) {
+//      //val str = new String(chars)
+//      chars(0) == '(' && chars(1) == ')'
+//    }
+
+    else {
+      var res = true
+      var count = 0
+      for (i <- 0 until chars.size) {
+        val ch = chars(i)
+        if (ch == '(') count += 1
+        else if (ch == ')') {
+          count -= 1
+          if (count < 0) res = false
+        }
+      }
+      if (count != 0) res = false
+      res
+    }
   }
 
   /** Returns `true` iff the parentheses in the input `chars` are balanced.
