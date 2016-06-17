@@ -43,7 +43,9 @@ class KMeans {
   }
 
   def classify(points: GenSeq[Point], means: GenSeq[Point]): GenMap[Point, GenSeq[Point]] = {
-    ???
+      var map = points.groupBy { p => findClosest(p, means) }
+      means.foreach { k => if (!map.contains(k)) map += (k -> GenSeq[Point]()) }
+      map
   }
 
   def findAverage(oldMean: Point, points: GenSeq[Point]): Point = if (points.length == 0) oldMean else {
@@ -59,11 +61,13 @@ class KMeans {
   }
 
   def update(classified: GenMap[Point, GenSeq[Point]], oldMeans: GenSeq[Point]): GenSeq[Point] = {
-    ???
+    oldMeans.map { k => findAverage(k, classified(k)) }
   }
 
   def converged(eta: Double)(oldMeans: GenSeq[Point], newMeans: GenSeq[Point]): Boolean = {
-    ???
+    val z = newMeans.zip(oldMeans)
+    val b = z.map{case (n:Point, o:Point) => n.squareDistance(o) <= eta}
+    b.fold(true)(_ && _)
   }
 
   @tailrec
