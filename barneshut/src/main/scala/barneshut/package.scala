@@ -69,12 +69,12 @@ package object barneshut {
     }
 
     def insert(b: Body): Fork = {
-      if (b.x <= centerX) {
-        if (b.y <= centerY) Fork(nw.insert(b), ne, sw, se) 
+      if (b.x < centerX) {
+        if (b.y < centerY) Fork(nw.insert(b), ne, sw, se) 
         else Fork(nw, ne, sw.insert(b), se)
         
       } else {
-        if (b.y <= centerY) Fork(nw, ne.insert(b), sw, se) 
+        if (b.y < centerY) Fork(nw, ne.insert(b), sw, se) 
         else Fork(nw, ne, sw, se.insert(b))
       }
     }

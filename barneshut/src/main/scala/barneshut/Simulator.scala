@@ -24,8 +24,8 @@ class Simulator(val taskSupport: TaskSupport, val timeStats: TimeStatistics) {
     val boundaries = new Boundaries
     boundaries.minX = Math.min(a.minX, b.minX)
     boundaries.minY = Math.min(a.minY, b.minY)
-    boundaries.maxX = Math.min(a.maxX, b.maxX)
-    boundaries.maxY = Math.min(a.maxY, b.maxY)
+    boundaries.maxX = Math.max(a.maxX, b.maxX)
+    boundaries.maxY = Math.max(a.maxY, b.maxY)
     boundaries
   }
 

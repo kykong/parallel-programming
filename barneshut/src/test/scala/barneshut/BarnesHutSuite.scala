@@ -42,7 +42,18 @@ import FloatOps._
     assert(quad.total == 1, s"${quad.total} should be 1")
   }
 
+  test("Leaf with 2 bodies") {
+    val b1 = new Body(123f, 18f, 26f, 0f, 0f)
+    val b2 = new Body(50f,  16f, 29f, 0f, 0f)
+    val quad = Leaf(17.5f, 27.5f, 5f, Seq(b1)).insert(b2)
 
+    assert(quad.mass ~= 173f, s"${quad.mass} should be 173f")
+    assert(quad.massX ~= 17.421965318f, s"${quad.massX} should be 17.42f")
+    assert(quad.massY ~= 26.867052023f, s"${quad.massY} should be 26.87f")
+    assert(quad.total == 2, s"${quad.total} should be 1")
+  }
+  
+  
   test("Fork with 3 empty quadrants and 1 leaf (nw)") {
     val b = new Body(123f, 18f, 26f, 0f, 0f)
     val nw = Leaf(17.5f, 27.5f, 5f, Seq(b))
