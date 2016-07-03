@@ -112,6 +112,18 @@ import FloatOps._
     assert(res, s"Body not found in the right sector")
   }
 
+//  // test cases for Simulator
+//  test("updateBoundaries should have correct minX and minY value") {
+//    val bound = new Boundaries
+//    bound.minX = 10
+//    bound.minY = 20
+//    
+//    val body = new Body(123f, 3f, 6f, 0f, 0f)
+//    
+//    val res = Simulator.updateBoundaries(bound, body)
+//  }
+  
+  
 }
 
 object FloatOps {
